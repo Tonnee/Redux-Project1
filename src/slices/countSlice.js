@@ -10,13 +10,17 @@ export const countSlice = createSlice({
             state.value += 1;
         },
         minus: (state) => {
-            state.value -= 1;
+            if (state.value > 1) {
+                state.value -= 1;
+            } else {
+                console.log("Value is 1");
+            }
         },
         multiply: (state) => {
             state.value *= state.value;
         },
         divide: (state) => {
-            state.value = state.value/2;
+            state.value = state.value / 2;
         },
     },
 });
