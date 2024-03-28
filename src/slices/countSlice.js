@@ -3,28 +3,31 @@ import { createSlice } from "@reduxjs/toolkit";
 export const countSlice = createSlice({
     name: "count",
     initialState: {
-        value: 0,
+        value: 1,
     },
     reducers: {
-        plus: (state) => {
-            state.value += 1;
+        plus: (state, action) => {
+            state.value += action.payload;
         },
-        minus: (state) => {
+        minus: (state, action) => {
             if (state.value > 1) {
-                state.value -= 1;
+                state.value -= action.payload;
             } else {
                 console.log("Value is 1");
             }
         },
-        multiply: (state) => {
-            state.value *= state.value;
+        multiply: (state, action) => {
+            state.value *= action.payload;
         },
-        divide: (state) => {
-            state.value = state.value / 2;
+        divide: (state, action) => {
+            state.value = action.payload / 2;
         },
+        double: (state, action) => {
+            state.value += action.payload;
+        }
     },
 });
 
-export const { plus, minus, multiply, divide } = countSlice.actions;
+export const { plus, minus, multiply, divide, double } = countSlice.actions;
 
 export default countSlice.reducer;
